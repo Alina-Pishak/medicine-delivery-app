@@ -21,7 +21,6 @@ const Filters = ({ setShop, setSort, sort }) => {
     <Paper
       sx={{
         width: "20%",
-        maxHeight: "400px",
         padding: "10px",
         display: "flex",
         flexDirection: "column",
@@ -64,9 +63,8 @@ const Filters = ({ setShop, setSort, sort }) => {
           label="Sort by"
           onChange={handleChange}
         >
-          <MenuItem value="cheap">Price low to high</MenuItem>
-          <MenuItem value="expensive">Price high to low</MenuItem>
-          {/* <MenuItem value={30}>Thirty</MenuItem> */}
+          <MenuItem value="price-low-to-high">Price low to high</MenuItem>
+          <MenuItem value="price-high-to-low">Price high to low</MenuItem>
         </Select>
       </FormControl>
     </Paper>
