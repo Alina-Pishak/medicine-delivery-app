@@ -38,7 +38,7 @@ const ShoppingCartItem = ({ drugs }) => {
           sx={{ maxWidth: "300px", objectFit: "contain" }}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="h5">
             {name}
           </Typography>
           <Typography
@@ -58,6 +58,9 @@ const ShoppingCartItem = ({ drugs }) => {
             onChange={({ target }) => {
               if (isNaN(target.valueAsNumber)) {
                 dispatch(updateQuantity({ id, quantity: 1 }));
+                return;
+              }
+              if (target.valueAsNumber > quantityAvailable) {
                 return;
               }
               dispatch(updateQuantity({ id, quantity: target.valueAsNumber }));
