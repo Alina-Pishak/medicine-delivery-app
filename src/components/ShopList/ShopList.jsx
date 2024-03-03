@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Grid } from "@mui/material";
 import ShopListItem from "../ShopListItem/ShopListItem";
 
