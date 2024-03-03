@@ -1,12 +1,12 @@
+import { Box } from "@mui/material";
 import Order from "../../components/Order/Order";
 
 const ShoppingCartPage = () => {
-  return <Order />;
+  return (
+    <Box component="main" sx={{ paddingRight: "50px", paddingLeft: "50px" }}>
+      <Order />
+    </Box>
+  );
 };
 
 export default ShoppingCartPage;
-
-// <>
-{
-  /* <Box p={1} mt={3} sx={{ display: "flex" }}> */
-}

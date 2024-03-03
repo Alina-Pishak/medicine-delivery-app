@@ -9,10 +9,16 @@ export const drugsApi = createApi({
   tagTypes: ["drugs"],
   endpoints: (builder) => ({
     getDrugs: builder.query({
-      query: () => ({ url: API_ENDPOINTS }),
+      query: ({ shop = "", sort = "" }) => ({
+        url: API_ENDPOINTS,
+        params: { shop, sort },
+      }),
       providesTags: "drugs",
+    }),
+    getDrugsShops: builder.query({
+      query: () => ({ url: `${API_ENDPOINTS}/shops` }),
     }),
   }),
 });
 
-export const { useGetDrugsQuery } = drugsApi;
+export const { useGetDrugsQuery, useGetDrugsShopsQuery } = drugsApi;

@@ -14,7 +14,6 @@ import {
 } from "../../regux/favorites/favorites";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-// import { CheckCircleOutlineIcon } from "@mui/icons-material";
 
 const ShopListItem = ({ drugs }) => {
   const [open, setOpen] = useState(false);
@@ -45,10 +44,10 @@ const ShopListItem = ({ drugs }) => {
         >
           <Alert severity="success">Drug was successfully added to cart.</Alert>
         </Snackbar>
-        <Card sx={{ maxWidth: 345, height: 350, position: "relative" }}>
+        <Card sx={{ maxWidth: 345, height: 460, position: "relative" }}>
           <FavoriteBorderIcon
             onClick={() => addDrugToFavorites(id)}
-            htmlColor="#fff"
+            htmlColor="rgb(25, 118, 210)"
             sx={{ position: "absolute", top: "14px", right: "14px" }}
           />
           {favorites.map(
@@ -62,16 +61,42 @@ const ShopListItem = ({ drugs }) => {
                 />
               )
           )}
-          <CardMedia component="img" alt={name} height="140" image={img} />
+          <CardMedia
+            component="img"
+            alt={name}
+            height="250"
+            image={img}
+            sx={{ objectFit: "contain" }}
+          />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h5"
+              sx={{
+                height: "32px",
+                maxWidth: "313px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
               {name}
             </Typography>
-            <Typography variant="body2" sx={{ maxHeight: 60 }}>
+            <Typography
+              variant="body2"
+              sx={{
+                height: "40px",
+                overflow: "auto",
+              }}
+            >
               {description}
             </Typography>
+            <Typography variant="span" component="p" mt={4}>
+              {Number.parseFloat(price).toFixed(2)}$
+            </Typography>
           </CardContent>
-          <CardActions>
+          <CardActions sx={{}}>
             <Button
               size="small"
               onClick={() =>

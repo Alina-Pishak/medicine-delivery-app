@@ -24,5 +24,3 @@ export const axiosBaseQuery =
       };
     }
   };
-
-// axios.defaults.baseURL = "https://medicine-delivery-backend.onrender.com";

@@ -21,19 +21,32 @@ const ShoppingCartItem = ({ drugs }) => {
   const dispatch = useDispatch();
   return drugs.map(({ id, name, img, price, quantity, quantityAvailable }) => (
     <Grid xs={2} sm={4} md={4} mb={3} key={id} item component="li">
-      <Card sx={{ maxWidth: "100%", maxHeight: 400, display: "flex" }}>
+      <Card
+        sx={{
+          maxWidth: "98%",
+          maxHeight: 400,
+          display: "flex",
+          boxShadow: "0px 0px 3px 0px rgba(0,0,0,0.75)",
+          paddingRight: "2px",
+        }}
+      >
         <CardMedia
           component="img"
           alt={name}
-          height="140"
+          height="146"
           image={img}
-          sx={{ maxWidth: "350px" }}
+          sx={{ maxWidth: "300px", objectFit: "contain" }}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {name}
           </Typography>
-          <Typography variant="p" component="p" sx={{ maxHeight: 60 }}>
+          <Typography
+            variant="span"
+            fontWeight={400}
+            component="p"
+            sx={{ maxHeight: 60 }}
+          >
             Price: {countPrice(price, quantity)}
           </Typography>
           <TextField
