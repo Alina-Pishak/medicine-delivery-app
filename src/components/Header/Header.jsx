@@ -9,13 +9,12 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-const pages = ["Shop", "Shopping Cart"];
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -57,35 +56,83 @@ const Header = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography
-                    textAlign="center"
-                    onClick={() =>
-                      page === "Shop"
-                        ? navigate("/")
-                        : navigate("/shopping-cart")
-                    }
-                  >
-                    {page}
-                  </Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography
+                  textAlign="center"
+                  color={pathname === "/" ? "rgb(25, 118, 210)" : "inherit"}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate("/");
+                  }}
+                >
+                  Shop
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography
+                  textAlign="center"
+                  color={
+                    pathname === "/shopping-cart"
+                      ? "rgb(25, 118, 210)"
+                      : "inherit"
+                  }
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate("/shopping-cart");
+                  }}
+                >
+                  Shopping Cart
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => {
-                  handleCloseNavMenu();
-                  page === "Shop" ? navigate("/") : navigate("/shopping-cart");
-                }}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              gap: "10px",
+            }}
+          >
+            <Button
+              onClick={() => {
+                navigate("/");
+              }}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                borderRadius: 0,
+                borderBottom: "1px solid transparent",
+                borderBottomColor: pathname === "/" && "#fff",
+                transition:
+                  "border-bottom-color, 250ms cubic-bezier(0.4, 0, 0.2, 1)",
+                "&:hover": {
+                  borderBottomColor: "#fff",
+                },
+              }}
+            >
+              Shop
+            </Button>
+            <Button
+              onClick={() => {
+                navigate("/shopping-cart");
+              }}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                borderRadius: 0,
+                borderBottom: "1px solid transparent",
+                borderBottomColor: pathname === "/shopping-cart" && "#fff",
+                transition:
+                  "border-bottom-color, 250ms cubic-bezier(0.4, 0, 0.2, 1)",
+                "&:hover": {
+                  borderBottomColor: "#fff",
+                },
+              }}
+            >
+              Shopping Cart
+            </Button>
           </Box>
         </Toolbar>
       </Container>

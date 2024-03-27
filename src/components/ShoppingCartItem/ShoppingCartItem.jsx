@@ -10,6 +10,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "../../regux/cart/cart";
+import { useMediaQuery } from "react-responsive";
 
 const ShoppingCartItem = ({ drugs }) => {
   const countPrice = (price, quantity) => {
@@ -19,15 +20,27 @@ const ShoppingCartItem = ({ drugs }) => {
     return `${Number.parseFloat(price * quantity).toFixed(2)}$`;
   };
   const dispatch = useDispatch();
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 1280px)" });
+
   return drugs.map(({ id, name, img, price, quantity, quantityAvailable }) => (
-    <Grid xs={2} sm={4} md={4} mb={3} key={id} item component="li">
+    <Grid
+      xs={2}
+      sm={4}
+      md={4}
+      mb={3}
+      key={id}
+      item
+      component="li"
+      sx={{ p: isSmallScreen ? 2 : 1 }}
+    >
       <Card
         sx={{
           maxWidth: "98%",
           maxHeight: 400,
           display: "flex",
-          boxShadow: "0px 0px 3px 0px rgba(0,0,0,0.75)",
           paddingRight: "2px",
+          flexWrap: isSmallScreen ? "wrap" : "nowrap",
+          justifyContent: "center",
         }}
       >
         <CardMedia
@@ -38,7 +51,12 @@ const ShoppingCartItem = ({ drugs }) => {
           sx={{ maxWidth: "300px", objectFit: "contain" }}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h5">
+          <Typography
+            gutterBottom
+            variant={isSmallScreen ? "h6" : "h5"}
+            component="h5"
+            paragraph={isSmallScreen}
+          >
             {name}
           </Typography>
           <Typography

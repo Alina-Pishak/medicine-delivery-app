@@ -3,17 +3,18 @@ import ShopList from "../../components/ShopList/ShopList";
 import { useGetDrugsQuery } from "../../regux/drugs/drugs";
 import { Backdrop, Box, CircularProgress } from "@mui/material";
 import Filters from "../../components/Filters/Filters";
+import { useMediaQuery } from "react-responsive";
 
 const ShopPage = () => {
   const [sort, setSort] = useState("");
   const [shop, setShop] = useState("");
   const { data: drugs, isLoading } = useGetDrugsQuery({ shop, sort });
-
+  const isLaptopScreen = useMediaQuery({ query: "(min-width: 1280px)" });
   return (
     <Box
       component="main"
       sx={{
-        display: "flex",
+        display: isLaptopScreen ? "flex" : "block",
         marginTop: "50px",
         gap: "20px",
         paddingRight: "50px",
@@ -27,7 +28,7 @@ const ShopPage = () => {
       >
         <CircularProgress color="inherit" />
       </Backdrop>
-      <Filters setShop={setShop} setSort={setSort} sort={sort} />
+      <Filters setShop={setShop} setSort={setSort} sort={sort} shop={shop} />
       <ShopList drugs={drugs} />
     </Box>
   );

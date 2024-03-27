@@ -7,17 +7,13 @@
 }
 
 ::-webkit-scrollbar {
-    width: 18px;
+    width: 6px;
 }
-
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(5, 5, 5, 0.2);
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
+    border-radius: 12px;
+    background: rgba(80, 80, 80, 0.2);
 }
-
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

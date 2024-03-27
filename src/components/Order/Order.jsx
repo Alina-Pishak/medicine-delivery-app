@@ -16,6 +16,7 @@ import { object, string, number } from "yup";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { clearCart } from "../../regux/cart/cart";
+import { useMediaQuery } from "react-responsive";
 
 const validationSchema = object({
   name: string("Enter your name").required("Name is required"),
@@ -31,6 +32,7 @@ const Order = () => {
   const [open, setOpen] = useState(false);
   const [createOrder, result] = useCreateOrderMutation();
   const dispatch = useDispatch();
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1280px)" });
   const countTotal = () => {
     let total = 0;
     cart.map(({ price, quantity }) => (total += price * quantity));
@@ -63,7 +65,7 @@ const Order = () => {
       noValidate
       sx={{
         mt: 5,
-        display: "grid",
+        display: isBigScreen ? "grid" : "block",
         gap: "30px",
         gridTemplateColumns: "auto 60%",
       }}

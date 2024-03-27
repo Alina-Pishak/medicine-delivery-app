@@ -34,7 +34,7 @@ const ShopListItem = ({ drugs }) => {
   };
   return drugs.map(
     ({ _id: id, name, description, img, price, quantityAvailable }) => (
-      <Grid xs={2} sm={4} md={4} key={id} item component="li">
+      <Grid item xs={12} sm={6} md={4} key={id} component="li">
         <Snackbar
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
           open={open}
@@ -44,7 +44,7 @@ const ShopListItem = ({ drugs }) => {
         >
           <Alert severity="success">Drug was successfully added to cart.</Alert>
         </Snackbar>
-        <Card sx={{ maxWidth: 345, height: 460, position: "relative" }}>
+        <Card sx={{ maxWidth: 345, margin: "0 auto", position: "relative" }}>
           <FavoriteBorderIcon
             onClick={() => addDrugToFavorites(id)}
             htmlColor="rgb(25, 118, 210)"
