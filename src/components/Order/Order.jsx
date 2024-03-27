@@ -12,7 +12,7 @@ import {
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
 import { useCreateOrderMutation } from "../../redux/orders/orders";
-import { object, string, number } from "yup";
+import { object, string, number, array } from "yup";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { clearCart } from "../../redux/cart/cart";
@@ -29,7 +29,9 @@ const validationSchema = object({
 
 const Order = () => {
   const { cart } = useSelector((state) => state.cart);
-  const [open, setOpen] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openError, setOpenError] = useState(false);
+
   const [createOrder, result] = useCreateOrderMutation();
   const dispatch = useDispatch();
   const isBigScreen = useMediaQuery({ query: "(min-width: 1280px)" });
@@ -47,15 +49,23 @@ const Order = () => {
     },
     validationSchema,
     onSubmit: (values) => {
+      if (cart.length < 1) {
+        setOpenError(true);
+        return;
+      }
       createOrder({ ...values, order: cart });
-      setOpen(true);
+      setOpenSuccess(true);
       formik.resetForm();
       dispatch(clearCart());
     },
   });
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleClose = (type) => {
+    if (type === "error") {
+      setOpenError(false);
+    } else if (type === "success") {
+      setOpenSuccess(false);
+    }
   };
 
   return (
@@ -72,13 +82,24 @@ const Order = () => {
     >
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        open={open}
-        onClose={handleClose}
-        key={{ vertical: "top", horizontal: "center" }}
+        open={openSuccess}
+        onClose={() => handleClose("success")}
+        sx={{ width: "100%" }}
         autoHideDuration={4000}
       >
         <Alert severity="success">
           Your order has been successfully created. Thank you for choosing us!
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={openError}
+        onClose={() => handleClose("error")}
+        sx={{ width: "100%" }}
+        autoHideDuration={4000}
+      >
+        <Alert severity="error">
+          You need to add some products to the cart to create an order.
         </Alert>
       </Snackbar>
       <Backdrop
