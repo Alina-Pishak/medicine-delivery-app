@@ -89,18 +89,18 @@ const Filters = ({ setShop, setSort, sort, shop }) => {
               alignItems: "center",
             }}
           >
-            {drugsShops?.map((shop) => (
-              <ListItem key={shop}>
+            {drugsShops?.map((shopName) => (
+              <ListItem key={shopName}>
                 <Button
-                  onClick={() => setShop(shop)}
-                  variant="outlined"
+                  onClick={() => setShop(shopName)}
+                  variant={shopName === shop ? "contained" : "outlined"}
                   fullWidth
                   sx={{
                     textTransform: "capitalize",
-                    color: "inherit",
+                    color: shopName === shop ? "#fff" : "inherit",
                   }}
                 >
-                  {shop}
+                  {shopName}
                 </Button>
               </ListItem>
             ))}
@@ -117,6 +117,7 @@ const Filters = ({ setShop, setSort, sort, shop }) => {
               value={sort}
               label="Sort by"
               onChange={handleChange}
+              name="sort"
             >
               <MenuItem value="price-low-to-high">Price low to high</MenuItem>
               <MenuItem value="price-high-to-low">Price high to low</MenuItem>
