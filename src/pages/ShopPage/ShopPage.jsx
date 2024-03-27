@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ShopList from "../../components/ShopList/ShopList";
-import { useGetDrugsQuery } from "../../regux/drugs/drugs";
+import { useGetDrugsQuery } from "../../redux/drugs/drugs";
 import { Backdrop, Box, CircularProgress } from "@mui/material";
 import Filters from "../../components/Filters/Filters";
 import { useMediaQuery } from "react-responsive";

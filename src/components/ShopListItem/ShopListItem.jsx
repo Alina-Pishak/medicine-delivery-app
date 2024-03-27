@@ -6,12 +6,12 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Alert, Grid, Snackbar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../regux/cart/cart";
+import { addToCart } from "../../redux/cart/cart";
 import { useState } from "react";
 import {
   addToFavorites,
   removeFromFavorites,
-} from "../../regux/favorites/favorites";
+} from "../../redux/favorites/favorites";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 

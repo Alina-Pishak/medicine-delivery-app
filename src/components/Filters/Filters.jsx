@@ -10,7 +10,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import { useGetDrugsShopsQuery } from "../../regux/drugs/drugs";
+import { useGetDrugsShopsQuery } from "../../redux/drugs/drugs";
 import MediaQuery from "react-responsive";
 
 const Filters = ({ setShop, setSort, sort, shop }) => {

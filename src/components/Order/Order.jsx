@@ -11,11 +11,11 @@ import {
 } from "@mui/material";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
-import { useCreateOrderMutation } from "../../regux/orders/orders";
+import { useCreateOrderMutation } from "../../redux/orders/orders";
 import { object, string, number } from "yup";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { clearCart } from "../../regux/cart/cart";
+import { clearCart } from "../../redux/cart/cart";
 import { useMediaQuery } from "react-responsive";
 
 const validationSchema = object({

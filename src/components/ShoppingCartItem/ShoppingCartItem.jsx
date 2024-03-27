@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch } from "react-redux";
-import { removeFromCart, updateQuantity } from "../../regux/cart/cart";
+import { removeFromCart, updateQuantity } from "../../redux/cart/cart";
 import { useMediaQuery } from "react-responsive";
 
 const ShoppingCartItem = ({ drugs }) => {
