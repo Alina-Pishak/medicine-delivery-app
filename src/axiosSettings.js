@@ -1,7 +1,9 @@
 import axios from "axios";
 
 export const axiosBaseQuery =
-  ({ baseUrl } = { baseUrl: "http://localhost:3000" }) =>
+  (
+    { baseUrl } = { baseUrl: "https://medicine-delivery-backend.onrender.com" }
+  ) =>
   async ({ url, method, data, params, headers }) => {
     try {
       const result = await axios({
